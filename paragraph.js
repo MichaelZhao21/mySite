@@ -6,5 +6,7 @@ function confirm(choice){
 		case(1):
 			document.getElementById("source").innerHTML = "YAAAAAAAAAAAAAASSSS";
 			break;
+		default:
+			document.getElementById("source").innerHTML = "I really love paragraphs, don't you?";
 	}
 }
