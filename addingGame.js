@@ -4,12 +4,12 @@ var correct;
 function check(){
 	if (x.value == correct){
 		document.getElementById("correct").innerHTML = "Correct!";
-		window.setTimeout(function(){document.getElementById("correct").innerHTML = "hmm";}, 3000);
+		window.setTimeout(function(){document.getElementById("correct").innerHTML = "";}, 1000);
 	}else{
-		alert(x.value + " is wrong, " + correct + " is the right answer.");
-	}
-
-	
+		document.getElementById("correct").innerHTML = x.value + " is wrong, " + correct + " is the right answer.";
+		window.setTimeout(function(){document.getElementById("correct").innerHTML = "";}, 2000);
+	}	
+	newQuestion();
 }
 function newQuestion(){
 	var da = document.getElementById("d1").value;
