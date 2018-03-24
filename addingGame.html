@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 
 <html>
-<body>
+<body onload="start()">
 
-<h1>Add</h1>
-<p id="demo">Where are we?</p>
-<button onClick="run()">Check!</button>
-<script>
-function run(){
-	document.getElementById("demo").innerHTML = "Page location is " + window.location.href;
-}
-</script>
+<input type="button" value="back" onclick="window.location.href = 'index.html';" />
+<h1>HTML Adding game!</h1>
+<br>
 
+<p>Digits:</p>
+<input type="text" id="d1"> +</input> 
+<input type="text" id="d2"></input><br>
+<br>
 
+<p id="question"></p><br>
+<input type="text" id="answer"></input><br>
+<button onclick="check()">Check</button>
+<button onclick="newQuestion()">New Question</button><br>
+<p id="correct">Right</p>
+
+<script src="addingGame.js"></script>
 </body>
 </html>
