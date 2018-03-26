@@ -14,18 +14,10 @@
 
   <p id="question"></p><br>
   <input type="text" id="answer"></input><br>
-  <button onclick="check()">Check</button>
   <button onclick="newQuestion()">New Question</button><br>
   <p id="correct"></p>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="addingGame.js"></script>
-  <script>
-  document.getElementById("answer").addEventListener("keydown", function onEvent(event) {
-    x = document.getElementById("keyPressed");
-    if (x == "Enter"){
-      check();
-    }
-</script>
 </body>
 </html>
