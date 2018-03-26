@@ -29,12 +29,12 @@ function start(){
 	var da = document.getElementById("d2").value = 1;
 	newQuestion();
 }
-function key(){
+function init(){
 	y = document.getElementById("answer");
 	y.addEventListener("keydown", function onEvent(event) {
-		if (event.key == "Enter"){
+		if (event.key == "Enter" && y.value != ""){
 			check();
 		}
 	});
 }
-key();
+init();
