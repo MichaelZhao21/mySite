@@ -2,23 +2,46 @@
 
 <html>
 <body>
-<h1>A Test Site</h1>
-<p id="source">I really love paragraphs, don't you?</p>
-<button onclick="confirm(1)">Yes</button>
-<button onclick="confirm(0)">No</button>
-<button onclick="confirm(2)">Reset</button><br>
-<button onclick="line()">Draw Line</button><br>
-<button onclick="clearCanvas()">Clear Canvas</button><br>
-<br>
-<canvas id="myCanvas" width="200" height="100"style="border:1px solid #000000;"></canvas>
+  <h1>A Test Site</h1>
+  <p id="source">I really love paragraphs, don't you?</p>
+  <button onclick="confirm(1)">Yes</button>
+  <button onclick="confirm(0)">No</button>
+  <button onclick="confirm(2)">Reset</button><br>
+  <button onclick="line()">Draw Line</button><br>
+  <button onclick="clearCanvas()">Clear Canvas</button><br>
+  <br>
+  <canvas id="myCanvas" width="200" height="100"style="border:1px solid #000000;"></canvas><br>
+  <p id=keyPressed> </p>
+  <br><br>
 
-<br><br><br><br>
-
-<h2>Games</h2>
-<input type="button" value="Adding game" onclick="window.location.href = 'addingGame.html';" />
+  <h2>Games</h2>
+  <input type="button" value="Adding game" onclick="window.location.href = 'addingGame.html';" />
 
 
 </body>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+document.addEventListener("keydown", function onEvent(event) {
+  x = document.getElementById("keyPressed");
+    switch(event.key){
+      case "ArrowDown":
+        x.innerHTML = "Down";
+        break;
+      case "ArrowUp":
+        x.innerHTML = "Up"
+        break;
+      case "ArrowLeft":
+        x.innerHTML = "Left"
+        break;
+      case "ArrowRight":
+        x.innerHTML = "Right"
+        break;
+      default:
+        return;
+    }
+
+});
+</script>
 <script src="canvasDraw.js"></script>
 <script src="paragraph.js"></script>
 </html>
