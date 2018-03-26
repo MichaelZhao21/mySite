@@ -10,7 +10,6 @@ function check(){
 		window.setTimeout(function(){document.getElementById("correct").innerHTML = "";}, 2000);
 	}
 	newQuestion();
-	//ghghghghghghhgghgh
 	document.getElementById("answer").value = "";
 }
 function newQuestion(){
