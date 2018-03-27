@@ -7,8 +7,7 @@
   <button onclick="confirm(1)">Yes</button>
   <button onclick="confirm(0)">No</button>
   <button onclick="confirm(2)">Reset</button><br>
-  <button onclick="line()">Draw Line</button><br>
-  <button onclick="clearCanvas()">Clear Canvas</button><br>
+  <button onclick="initPlayer()">Add Player</button><br>
   <br>
   <canvas id="myCanvas" width="200" height="100"style="border:1px solid #000000;"></canvas><br>
   <p id=keyPressed>KEY!</p>
@@ -26,15 +25,19 @@ document.addEventListener("keydown", function onEvent(event) {
     switch(event.key){
       case "ArrowDown":
         x.innerHTML = "Down";
+        movePlayer("down");
         break;
       case "ArrowUp":
-        x.innerHTML = "Up"
+        x.innerHTML = "Up";
+        movePlayer("up");
         break;
       case "ArrowLeft":
-        x.innerHTML = "Left"
+        x.innerHTML = "Left";
+        movePlayer("left");
         break;
       case "ArrowRight":
-        x.innerHTML = "Right"
+        x.innerHTML = "Right";
+        movePlayer("right");
         break;
       default:
         return;
