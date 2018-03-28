@@ -1,3 +1,6 @@
+
+import * as algo from "algo.js";
+
 var x = document.getElementById("answer");
 var correct;
 var score;
@@ -20,8 +23,8 @@ function check(){
 function newQuestion(){
 	var da = document.getElementById("d1").value;
 	var db = document.getElementById("d2").value;
-	var a = randomInt(Math.pow(10,da-1),Math.pow(10,da));
-	var b = randomInt(Math.pow(10,db-1),Math.pow(10,db));
+	var a = algo.randomInt(Math.pow(10,da-1),Math.pow(10,da));
+	var b = algo.randomInt(Math.pow(10,db-1),Math.pow(10,db));
 	correct = a + b;
 	document.getElementById("question").innerHTML = String(a) + "+" + String(b);
 	if (da > 10 || db > 10){
@@ -35,10 +38,6 @@ function newQuestion(){
 	else{
 		digitRight = 1;
 	}
-}
-
-function randomInt(min, max) {
-  return Math.floor(Math.random() * (max - min) ) + min;
 }
 
 function start(){
