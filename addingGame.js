@@ -1,6 +1,4 @@
 
-import {randomInt} from "algo.js";
-
 var x = document.getElementById("answer");
 var correct;
 var score;
@@ -62,4 +60,3 @@ function scoreIncr(){
 function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;
 }
-export{randomInt};
