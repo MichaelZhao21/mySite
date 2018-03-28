@@ -15,6 +15,7 @@
 
   <h2>Games</h2>
   <input type="button" value="Adding game" onclick="window.location.href = 'addingGame.html';" />
+  <input type="button" value="Sudoku generator (WIP)" onclick="window.location.href = 'sudokuGen.html';"/>
 
 
 </body>
@@ -44,7 +45,19 @@ document.addEventListener("keydown", function onEvent(event) {
     }
 
 });
+function confirm(choice){
+	switch(choice){
+		case 0:
+			document.getElementById("source").innerHTML = "EWWWWWWWWWWWWWWWWWw";
+			break;
+		case 1:
+			document.getElementById("source").innerHTML = "YAAAAAAAAAAAAAASSSS";
+			break;
+		case 2:
+			document.getElementById("source").innerHTML = "I really love paragraphs, don't you?";
+			break;
+	}
+}
 </script>
-<script src="canvasDraw.js"></script>
-<script src="paragraph.js"></script>
+<script src="indexCanvasDraw.js"></script>
 </html>

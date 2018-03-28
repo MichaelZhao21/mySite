@@ -1,18 +1,28 @@
 <!DOCTYPE html>
 <html>
-<body onload="myFunction()">
-
+<body>
   <p id="inbe">hi</p>
   <input type="text" id="my_field"></input>
-  <button onClick="myFunction()">Clickme</button>
+  <button onClick="color()">Clickme</button><br>
+  <p>Hello </p>
+  <p>my </p>
+  <p>name </p>
+  <p>is </p>
+  <p id="name"></p>
 
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
   <script>
   $(document).keydown (function () {
-        alert ("no");
+      x = document.getElementById("name");
+      x.innerHTML = "Michael";
+      window.setTimeout(function(){x.innerHTML = "";},600);
     });
   function myFunction(){
     alert("hi");
+  }
+  function color(){
+  document.getElementById("my_field").style.background = "blue";
+  window.setTimeout(function(){document.getElementById("my_field").style.background = "white";},600);
   }
   </script>
 
