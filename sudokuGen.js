@@ -94,9 +94,13 @@ function testCorrect(){
       if (grid[x][y] == 0){
         value = document.getElementById("answer" + String(x) + String(y)).value;
         if (value == ""){
+          document.getElementById("answer" + String(x) + String(y)).style.color = "";
         }
         else if (Number(value) != correctGrid[x][y]){
           document.getElementById("answer" + String(x) + String(y)).style.color = "red";
+        }
+        else{
+          document.getElementById("answer" + String(x) + String(y)).style.color = "";
         }
       }
     }
