@@ -18,6 +18,7 @@
   margin-right: 10px;
   background-color: rgb(255, 163, 102);
   float: left;
+  font-family: sans-serif;
 }
 .right{
   margin-right: 20px;
@@ -27,4 +28,15 @@
 }
 .buttons{
   font-size: 20px;
+}
+input{
+  border: none;
+  -webkit-appearance: none;
+  background-color: transparent;
+  height: 80px;
+  width: 80px;
+  font-size:66px;
+  text-align: center;
+  color: blue;
+  font-family: sans-serif;
 }

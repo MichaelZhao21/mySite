@@ -1,4 +1,5 @@
 var grid = [[],[],[],[],[],[],[],[],[]];
+var correctGrid = [[],[],[],[],[],[],[],[],[]];
 
 function makeAnswer(){
 var possibleNumbers = [1,2,3,4,5,6,7,8,9];
@@ -28,6 +29,11 @@ var possibleNumbers = [1,2,3,4,5,6,7,8,9];
       }
     }
   }
+  for (var x = 0; x < 9; x++){
+    for (var y = 0; y < 9; y++){
+      correctGrid[x][y] = grid[x][y];
+    }
+  }
   drawTable();
 }
 
@@ -36,7 +42,7 @@ function drawTable(){
     for (y = 0; y < 9; y++){
       z = document.getElementById("box" + String(x) + String(y));
       if (grid[x][y] == 0){
-        z.innerHTML = "<input type=\"text\" id=\"answer" + String(x) + String(y) + "\"></input>";
+        z.innerHTML = "<input type=\"text\" id=\"answer" + String(x) + String(y) + "\" maxlength=\"1\"></input>";
       }
       else{
         z.innerHTML = grid[x][y];
@@ -79,4 +85,20 @@ function makeSpotsEmpty(spots){
     }
   }
   drawTable();
+}
+
+function testCorrect(){
+  var value;
+  for (var x = 0; x < 9; x++){
+    for (var y = 0; y < 9; y++){
+      if (grid[x][y] == 0){
+        value = document.getElementById("answer" + String(x) + String(y)).value;
+        if (value == ""){
+        }
+        else if (Number(value) != correctGrid[x][y]){
+          document.getElementById("answer" + String(x) + String(y)).style.color = "red";
+        }
+      }
+    }
+  }
 }
