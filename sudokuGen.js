@@ -1,6 +1,7 @@
+var grid = [[],[],[],[],[],[],[],[],[]];
+
 function makeAnswer(){
 var possibleNumbers = [1,2,3,4,5,6,7,8,9];
-var grid = [[],[],[],[],[],[],[],[],[]];
   for (var x = 0; x < 9; x++){
     for (var y = 0; y < 9; y++){
       grid[x][y] = 0;
@@ -27,18 +28,55 @@ var grid = [[],[],[],[],[],[],[],[],[]];
       }
     }
   }
-  drawTable(grid);
+  drawTable();
 }
 
-function drawTable(grid){
+function drawTable(){
   for (x = 0; x < 9; x++){
     for (y = 0; y < 9; y++){
       z = document.getElementById("box" + String(x) + String(y));
-      z.innerHTML = grid[x][y];
+      if (grid[x][y] == 0){
+        z.innerHTML = "<input type=\"text\" id=\"answer" + String(x) + String(y) + "\"></input>";
+      }
+      else{
+        z.innerHTML = grid[x][y];
+      }
     }
   }
 }
 
 function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;
+}
+
+function findEmptySpots(){
+  var emptyGrid = [];
+  for (var x = 0; x < 9; x++){
+    for (var y = 0; y < 9; y++){
+      if(grid[x][y] == 0){
+        emptyGrid.append(String(x) + String(y));
+      }
+    }
+  }
+}
+
+function makeSpotsEmpty(spots){
+  var r;
+  var c;
+  var test = 0;
+  for (var x = 0; x < spots; x++){
+    test = 0;
+    while (test == 0){
+      r = randomInt(0,9);
+      c = randomInt(0,9);
+      if (grid[r][c] == 0){
+        test = 0;
+      }
+      else{
+        grid[r][c] = 0;
+        test = 1;
+      }
+    }
+  }
+  drawTable();
 }
