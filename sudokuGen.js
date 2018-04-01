@@ -70,6 +70,7 @@ function makeSpotsEmpty(spots){
   var test = 0;
   for (var x = 0; x < spots; x++){
     test = 0;
+    giveUp = 0;
     while (test == 0){
       r = randomInt(0,9);
       c = randomInt(0,9);
@@ -79,8 +80,8 @@ function makeSpotsEmpty(spots){
       else{
         saveNum = grid[r][c];
         grid[r][c] = 0;
-        if (giveUp == 100){
-          return false;
+        if (giveUp > 100){
+          test = 1;
         }
         if (isPossible() == false){
           grid[r][c] = saveNum;
