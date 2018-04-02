@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<!--script src="ttt.js"></script-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+  document.addEventListener("click", function onEvent(event) {
+    if (event.srcElement.id.substr(0,3) == "box"){
+      alert(event.srcElement.id);
+    }
+  });
+</script>
+<link rel="stylesheet" href="ttt.css"></link>
+<body>
+  <h1>This. is. Tic. Tac. Toe.</h1>
+  <div class="gameHolder">
+    <div class="gameRow">
+      <div class="gameCell" id="box11"></div>
+      <div class="gameCell" id="box12"></div>
+      <div class="gameCell" id="box13"></div>
+    </div>
+    <div class="gameRow">
+      <div class="gameCell" id="box21"></div>
+      <div class="gameCell" id="box22"></div>
+      <div class="gameCell" id="box23"></div>
+    </div>
+    <div class="gameRow">
+      <div class="gameCell" id="box31"></div>
+      <div class="gameCell" id="box32"></div>
+      <div class="gameCell" id="box33"></div>
+    </div>
+  </div>
+</body>
+</html>

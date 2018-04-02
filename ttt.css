@@ -1,0 +1,29 @@
+h1 {
+  text-align: center;
+}
+.gameHolder {
+  background-color: rgb(89, 89, 89);
+  height: 330px;
+  width: 330px;
+  margin: auto;
+  border-radius: 8px;
+  padding: 10px 0px 0px 10px;
+}
+.gameRow{
+  margin-bottom: 10px;
+  float:left
+}
+.gameCell{
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  margin-right: 10px;
+  float: left;
+}
+button{
+  border: none;
+  -webkit-appearance: none;
+  background-color: transparent;
+  height: 100px;
+  width: 100px;
+}
