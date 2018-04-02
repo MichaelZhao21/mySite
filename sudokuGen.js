@@ -100,21 +100,27 @@ function makeSpotsEmpty(spots){
 
 function testCorrect(){
   var value;
+  var allRight = 0;
   for (var x = 0; x < 9; x++){
     for (var y = 0; y < 9; y++){
       if (grid[x][y] == 0){
         value = document.getElementById("answer" + String(x) + String(y)).value;
         if (value == ""){
           document.getElementById("answer" + String(x) + String(y)).style.color = "";
+          allRight++;
         }
         else if (Number(value) != correctGrid[x][y]){
           document.getElementById("answer" + String(x) + String(y)).style.color = "red";
+          allRight++;
         }
         else{
           document.getElementById("answer" + String(x) + String(y)).style.color = "";
         }
       }
     }
+  }
+  if (allRight == 0){
+    alert("You got the entire puzzle right!");
   }
 }
 
