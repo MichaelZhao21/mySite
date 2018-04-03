@@ -231,37 +231,6 @@ function testForZeros(){
   return zeroList;
 }
 
-function bob(){
-  grid = [[0,1,2,0,0,0,0,0,0],[3,4,5,0,0,0,0,0,0],[6,7,8,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0]];
-  drawTable();
-  var testGrid = ["00", "01", "02", "10", "11", "12", "20", "21", "22", "03", "04", "05", "13", "14", "15", "23", "24", "25", "06", "07", "08", "16", "17", "18", "26", "27", "28", "30", "31", "32", "40", "41", "42", "50", "51", "52", "33", "34", "35", "43", "44", "45", "53", "54", "55", "36", "37", "38", "46", "47", "48", "56", "57", "58", "60", "61", "62", "70", "71", "72", "80", "81", "82", "63", "64", "65", "73", "74", "75", "83", "84", "85", "66", "67", "68", "76", "77", "78", "86", "87", "88"];
-  var testNum = [1,2,3,4,5,6,7,8,9];
-  var row = 0;
-  var column = 0;
-  var testBox;
-
-  var zx;
-  var zy;
-  var testzx;
-  var testxy = testInArray(testGrid, String(row) + String(column));
-  textxy = Math.floor(testxy/9);
-  for (var x = testxy * 9; x < (textxy + 1) * 9; x++){
-    testzx = testGrid[x];
-    zx = testzx.substr(0,1);
-    zy = testzx.substr(1,1);
-    testBox = testInArray(testNum, grid[zx][zy]);
-    if (testBox != -1){
-      testNum.splice(testBox,1);
-    }
-  }
-  if (testNum.length == 1){
-    var ret = testNum[0];
-  }
-  else{
-    var ret = 0;
-  }
-  alert(ret);
-}
 /*python code to generate testGrid:
 for w in range(0,3):
 	for x in range(0,3):
