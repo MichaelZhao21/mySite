@@ -10,7 +10,8 @@
   <p>is </p>
   <p id="name"></p>
   <button onClick="hello()">Help</button>
-  <button onClick="ran()">fgrfwiefvbuewfijubhefewijohjbrwfojirbhufiowejkbfhuvijregbhrsnf</button>
+  <button onClick="ran()">fgrfwiefvbuewfijubhefewijohjbrwfojirbhufiowejkbfhuvijregbhrsnf</button><br>
+  <p id="timeTest">0</p>
 
   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
   <script>
@@ -30,12 +31,19 @@
 
   <script>
   function hello(){
-    alert("hello".substring(0,1));
+    setInterval(incr(),1000);
   }
   function ran(){
     var testString = "$%$%$%$%$";
     testString = testString.replace(new RegExp('\\$', 'g'), " ");
     console.log(testString);
+  }
+  function incr(){
+    var x = document.getElementById("timeTest").innerHTML;
+
+    x = Number(x) + 1;
+    console.log(x);
+    document.getElementById("timeTest").innerHTML = x;
   }
   </script>
 </body>
