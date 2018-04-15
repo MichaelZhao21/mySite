@@ -22,7 +22,11 @@
 }
 </style>
 <body onload="init()">
-<div style="text-align: center;"><button onclick="popGenerate(30, 1000)">Generate Population (1)</button></div><br>
+<div style="text-align: center;">
+  <button onclick="popGenerate(30, 1000)">Generate Population (1)</button>
+  <button onclick="analysis()">Analysis (2)</button><br>
+  <p id="count" style="display: inline;"></p>
+</div><br>
 <div class="container">
   <div class="row">
     <div class="cell" id="box0000"></div>

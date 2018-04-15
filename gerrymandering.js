@@ -1,5 +1,13 @@
 var grid = [];
 var districtGrid = [];
+var count = [0,0,0,0];
+var winStat = [0,0];
+
+function test(num){
+  for (var x = 0; x < num; x++){
+    popGenerate(30,1000);
+  }
+}
 
 function init(){
   setupGrid();
@@ -8,11 +16,18 @@ function init(){
         case "1":
           popGenerate(30,1000);
           break;
+        case "2":
+          analysis();
+          break;
+        case "3":
+          test(1000);
+          break;
         default:
-          return;
+          break;
       }
   });
 }
+
 function setupGrid(){
   var fillGrid = [];
   grid = [];
@@ -44,20 +59,22 @@ function drawGrid(){
         b = String(y);
       }
       c = grid[x][y];
-      if (c == 0){
-        document.getElementById("box" + a + b).style.backgroundColor = "rgb(255,255,255)";
-      }
-      else if (c == 1){
-        document.getElementById("box" + a + b).style.backgroundColor = "rgb(255,0,0)";
-      }
-      else if (c == 2){
-        document.getElementById("box" + a + b).style.backgroundColor = "rgb(0,0,255)";
-      }
-      else if (c == 3){
-        document.getElementById("box" + a + b).style.backgroundColor = "rgb(255,0,255)";
-      }
-      else if (c == 4){
-        document.getElementById("box" + a + b).style.backgroundColor = "rgb(226,194,76)";
+      switch (c){
+        case 0:
+          document.getElementById("box" + a + b).style.backgroundColor = "rgb(255,255,255)";
+          break;
+        case 1:
+          document.getElementById("box" + a + b).style.backgroundColor = "rgb(255,0,0)";
+          break;
+        case 2:
+          document.getElementById("box" + a + b).style.backgroundColor = "rgb(0,0,255)";
+          break;
+        case 3:
+          document.getElementById("box" + a + b).style.backgroundColor = "rgb(255,0,255)";
+          break;
+        case 4:
+          document.getElementById("box" + a + b).style.backgroundColor = "rgb(226,194,76)";
+          break;
       }
     }
   }
@@ -115,6 +132,7 @@ function popGenerate(num, size){
   }
   fillRest();
   drawGrid();
+  analysis();
 }
 
 function fillRest(){
@@ -147,6 +165,56 @@ function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;
 }
 
-function redistrict(){
-  
+function analysis(){
+  count = [0,0,0,0];
+  var value;
+  for (var x = 0; x < 50; x++){
+    for (var y = 0; y < 50; y++){
+      value = grid[x][y] - 1;
+          count[value]++;
+    }
+  }
+  value = "";
+  for (x = 0; x < count.length; x++){
+    value = value + ", " + count[x];
+  }
+  document.getElementById("count").innerHTML = value.substring(2);
+  if (count[0] > count[1]){
+    winStat[0]++;
+  }
+  else{
+    winStat[1]++;
+  }
+  console.log(winStat);
+}
+
+function drawBorders(){
+  //I HAVE NO IDEA WHAT TO DO HERE!!!!!!!!!!!!!!!!!!1
+}
+
+function redistrict(type){
+  switch (type){
+    case 1:
+      district1();
+      break;
+    case 2:
+      district2();
+      break;
+    case 3:
+      district3();
+      break;
+    case 4:
+      district4();
+      break;
+    case 5:
+      district5();
+      break;
+    default:
+      break;
+  }
+  drawBorders();
+}
+
+function distrit1(){
+
 }
