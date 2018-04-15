@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" href="gerrymandering.css"></link>
+<script src="gerrymandering.js"></script>
 <style>
 .container{
    background-color: rgb(80, 80, 80);
@@ -21,7 +21,8 @@
   float: left;
 }
 </style>
-<body>
+<body onload="init()">
+<div style="text-align: center;"><button onclick="popGenerate(30, 1000)">Generate Population (1)</button></div><br>
 <div class="container">
   <div class="row">
     <div class="cell" id="box0000"></div>
