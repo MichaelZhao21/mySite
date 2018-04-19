@@ -12,6 +12,8 @@
   <button onClick="hello()">Help</button>
   <button onClick="ran()">fgrfwiefvbuewfijubhefewijohjbrwfojirbhufiowejkbfhuvijregbhrsnf</button><br>
   <p id="timeTest">0</p>
+  <div id="addToMe"></div>
+  <button onclick="addToDiv()">Add rectangle!!!!!!</button>
 
   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
   <script>
@@ -27,9 +29,13 @@
   document.getElementById("my_field").style.background = "blue";
   window.setTimeout(function(){document.getElementById("my_field").style.background = "white";},600);
   }
-  </script>
 
-  <script>
+  function addToDiv(){
+    var addValue = document.createElement("div");
+    addValue.innerHTML = "hi";
+    document.getElementById("addToMe").appendChild(addValue);
+  }
+
   function hello(){
     setInterval(incr(),1000);
   }

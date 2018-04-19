@@ -206,6 +206,8 @@ function analysis(){
 function drawDistricts(){
   var a;
   var b;
+  var el;
+  var newDiv;
   for (var x = 0; x < 50; x++){
     if (x < 10){
       a = "0" + String(x);
@@ -220,9 +222,37 @@ function drawDistricts(){
       else{
         b = String(y);
       }
-      document.getElementById("box" + a + b).innerHTML = districtGrid[x][y];
+      el = document.getElementById("box" + a + b);
+      if (x > 0){
+        if (districtGrid[x - 1][y] != districtGrid[x][y]){
+          newDiv = document.createElement("div");
+          newDiv.className = "top";
+          el.appendChild(newDiv);
+        }
+      }
+      if (y > 0){
+        if (districtGrid[x][y - 1] != districtGrid[x][y]){
+          newDiv = document.createElement("div");
+          newDiv.className = "right";
+          el.appendChild(newDiv);
+        }
+      }
     }
   }
+  el = document.getElementById("box0000");
+  var l = document.createElement("div");
+  l.className = "Bleft";
+  el.appendChild(l);
+  var u = document.createElement("div");
+  u.className = "Bup";
+  el.appendChild(u);
+  el = document.getElementById("box4949");
+  var r = document.createElement("div");
+  r.className = "Bright";
+  el.appendChild(r);
+  var d = document.createElement("div");
+  d.className = "Bdown";
+  el.appendChild(d);
 }
 
 function resetBoard(){
