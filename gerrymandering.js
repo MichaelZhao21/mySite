@@ -17,10 +17,13 @@ function init(){
           popGenerate(30,1000);
           break;
         case "2":
-          analysis();
+          redistrict(1);
           break;
         case "3":
-          test(1000);
+          resetBoard();
+          break;
+        case "4":
+          test(document.getElementById("testTimes").value);
           break;
         default:
           break;
@@ -36,6 +39,18 @@ function setupGrid(){
       fillGrid.push(0);
     }
     grid.push(fillGrid);
+    fillGrid = [];
+  }
+}
+
+function setupDistrictGrid(){
+  var fillGrid = [];
+  districtGrid = [];
+  for (var x = 0; x < 50; x++){
+    for (var y = 0; y < 50; y++){
+      fillGrid.push(0);
+    }
+    districtGrid.push(fillGrid);
     fillGrid = [];
   }
 }
@@ -185,14 +200,55 @@ function analysis(){
   else{
     winStat[1]++;
   }
-  console.log(winStat);
+  document.getElementById("winStat").innerHTML = winStat;
 }
 
-function drawBorders(){
-  //I HAVE NO IDEA WHAT TO DO HERE!!!!!!!!!!!!!!!!!!1
+function drawDistricts(){
+  var a;
+  var b;
+  for (var x = 0; x < 50; x++){
+    if (x < 10){
+      a = "0" + String(x);
+    }
+    else{
+      a = String(x);
+    }
+    for (var y = 0; y < 50; y++){
+      if (y < 10){
+        b = "0" + String(y);
+      }
+      else{
+        b = String(y);
+      }
+      document.getElementById("box" + a + b).innerHTML = districtGrid[x][y];
+    }
+  }
+}
+
+function resetBoard(){
+  var a;
+  var b;
+  for (var x = 0; x < 50; x++){
+    if (x < 10){
+      a = "0" + String(x);
+    }
+    else{
+      a = String(x);
+    }
+    for (var y = 0; y < 50; y++){
+      if (y < 10){
+        b = "0" + String(y);
+      }
+      else{
+        b = String(y);
+      }
+      document.getElementById("box" + a + b).innerHTML = "";
+    }
+  }
 }
 
 function redistrict(type){
+  setupDistrictGrid();
   switch (type){
     case 1:
       district1();
@@ -212,9 +268,19 @@ function redistrict(type){
     default:
       break;
   }
-  drawBorders();
+  drawDistricts();
 }
 
-function distrit1(){
-
+function district1(){
+  var moveX;
+  var moveY;
+  for (var x = 0; x < 25; x++){
+    moveX = Math.floor(x / 5) * 10;
+    moveY = (x % 5) * 10;
+    for (var y = 0; y < 10; y++){
+      for (var z = 0; z < 10; z++){
+        districtGrid[moveX + y][moveY + z] = x;
+      }
+    }
+  }
 }
