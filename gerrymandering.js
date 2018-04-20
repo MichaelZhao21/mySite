@@ -1,5 +1,6 @@
 var grid = [];
 var districtGrid = [];
+var election = [];
 var count = [0,0,0,0];
 var winStat = [0,0];
 var filled = 0;
@@ -18,7 +19,7 @@ function init(){
           popGenerate(30,1000);
           break;
         case "2":
-          redistrict(1);
+          redistrict();
           break;
         case "3":
           resetBoard();
@@ -283,8 +284,10 @@ function resetBoard(){
   filled = 0;
 }
 
-function redistrict(type){
+function redistrict(){
   setupDistrictGrid();
+  resetBoard();
+  var type = Number(document.getElementById("districtType").value);
   switch (type){
     case 1:
       district1();
@@ -317,6 +320,14 @@ function district1(){
       for (var z = 0; z < 10; z++){
         districtGrid[moveX + y][moveY + z] = x;
       }
+    }
+  }
+}
+
+function district2(){
+  for (var x = 0; x < 50; x++){
+    for (var y = 0; y < 50; y++){
+      districtGrid[x][y] = Math.floor(x/2);
     }
   }
 }
