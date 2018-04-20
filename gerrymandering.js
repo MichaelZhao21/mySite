@@ -1,6 +1,6 @@
 var grid = [];
 var districtGrid = [];
-var election = [];
+var electionGrid;
 var count = [0,0,0,0];
 var winStat = [0,0];
 var filled = 0;
@@ -27,6 +27,8 @@ function init(){
         case "4":
           test(document.getElementById("testTimes").value);
           break;
+        case "5":
+          election();
         default:
           break;
       }
@@ -99,6 +101,7 @@ function drawGrid(){
 
 function popGenerate(num, size){
   setupGrid();
+  resetBoard();
   var gridX;
   var gridY;
   var side;
@@ -330,4 +333,61 @@ function district2(){
       districtGrid[x][y] = Math.floor(x/2);
     }
   }
+}
+
+function election(){
+  electionGrid = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],0,0,0];
+  var col;
+  var ran;
+  var side;
+  for (var x = 0; x < 50; x++){
+    for (var y = 0; y < 50; y++){
+      switch (grid[x][y]){
+        case 1:
+          side = 0;
+          break;
+        case 2:
+          side = 1;
+          break;
+        case 3:
+          ran = randomInt(0,1000);
+          if (ran < 500){
+            side = 0;
+          }
+          else {
+            side = 1;
+          }
+          break;
+      }
+      electionGrid[side][districtGrid[x][y]]++;
+    }
+  }
+  for (x = 0; x < 25; x++){
+    if (electionGrid[0][x] > electionGrid[1][x]){
+      electionGrid[2]++;
+    }
+    else if (electionGrid[0][x] < electionGrid[1][x]){
+      electionGrid[3]++;
+    }
+    else {
+      ran = randomInt(0,1000);
+      if (ran < 500){
+        electionGrid[2]++;
+      }
+      else {
+        electionGrid[3]++;
+      }
+    }
+  }
+  if (electionGrid[2] > electionGrid[3]){
+    electionGrid[4] = 1;
+  }
+  else {
+    electionGrid[4] = 2;
+  }
+  console.log(electionGrid);
+}
+
+function randomInt(min, max) {
+  return Math.floor(Math.random() * (max - min) ) + min;
 }
