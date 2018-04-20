@@ -2,6 +2,7 @@ var grid = [];
 var districtGrid = [];
 var count = [0,0,0,0];
 var winStat = [0,0];
+var filled = 0;
 
 function test(num){
   for (var x = 0; x < num; x++){
@@ -204,6 +205,9 @@ function analysis(){
 }
 
 function drawDistricts(){
+  if (filled == 1){
+    return;
+  }
   var a;
   var b;
   var el;
@@ -238,6 +242,7 @@ function drawDistricts(){
         }
       }
     }
+    filled = 1;
   }
   el = document.getElementById("box0000");
   var l = document.createElement("div");
@@ -275,6 +280,7 @@ function resetBoard(){
       document.getElementById("box" + a + b).innerHTML = "";
     }
   }
+  filled = 0;
 }
 
 function redistrict(type){
