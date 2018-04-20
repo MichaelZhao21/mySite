@@ -194,14 +194,14 @@ function analysis(){
   for (x = 0; x < count.length; x++){
     value = value + ", " + count[x];
   }
-  document.getElementById("count").innerHTML = value.substring(2);
+  value = " | " + value.substring(2);
   if (count[0] > count[1]){
     winStat[0]++;
   }
   else{
     winStat[1]++;
   }
-  document.getElementById("winStat").innerHTML = winStat;
+  document.getElementById("winStat").innerHTML = winStat + value;
 }
 
 function drawDistricts(){
