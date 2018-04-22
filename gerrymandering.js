@@ -25,9 +25,6 @@ function init(){
           resetBoard();
           break;
         case "4":
-          test(document.getElementById("testTimes").value);
-          break;
-        case "5":
           election();
         default:
           break;
@@ -349,7 +346,6 @@ function district3(){
   var spiral = 0;
   var co = [-1,-1];
   while (x < 25){
-    console.log(x);
     for (y = 0; y < 4; y++){
       for (z = spiral; z < 50 - (spiral * 2); z++){
         switch (y){
@@ -402,7 +398,6 @@ function district3(){
     }
     spiral++;
   }
-  console.log(districtGrid);
 }
 
 function election(){
