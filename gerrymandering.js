@@ -5,12 +5,6 @@ var count = [0,0,0,0];
 var winStat = [0,0];
 var filled = 0;
 
-function test(num){
-  for (var x = 0; x < num; x++){
-    popGenerate(30,1000);
-  }
-}
-
 function init(){
   setupGrid();
   document.addEventListener("keydown", function onEvent(event) {
