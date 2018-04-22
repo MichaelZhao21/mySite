@@ -112,7 +112,7 @@ function popGenerate(num, size){
   for (var x = 0; x < num; x++){
     side = sideGen();
     if (side == 4){
-      sSize = 10;
+      sSize = 100;
     }
     else{
       sSize = size;
@@ -335,6 +335,76 @@ function district2(){
   }
 }
 
+//DEFUNCT
+function district3(){
+  var x = 0;
+  var y;
+  var z;
+  var dc;
+  var dx;
+  var dy;
+  var spiralSize;
+  var spiralStart;
+  var rep;
+  var spiral = 0;
+  var co = [-1,-1];
+  while (x < 25){
+    console.log(x);
+    for (y = 0; y < 4; y++){
+      for (z = spiral; z < 50 - (spiral * 2); z++){
+        switch (y){
+          case 0:
+            if (districtGrid[spiral][z] == 0){
+              co = [spiral, z];
+            }
+            break;
+          case 1:
+            if (districtGrid[z][49 - spiral] == 0){
+              co = [z, 49 - spiral];
+            }
+            break;
+          case 2:
+            if (districtGrid[49 - spiral][z] == 0){
+              co = [49 - spiral, z];
+            }
+            break;
+          case 3:
+            if (districtGrid[z][spiral] == 0){
+              co = [z, spiral];
+            }
+            break;
+        }
+        if (co[0] != -1){
+          break;
+        }
+      }
+      if (districtGrid[co[0]][co[1]] == 0){
+        break;
+      }
+    }
+    if (co[0] != -1){
+      /*
+      rep = 1;
+      while (dc < 100){
+        spiralSize = Math.pow((2 * rep) + 1);
+        spiralStart = rep;
+        for (var l = 0; l < spiralSize; l++){
+          if (co[0] + rep >= 0 && co[1] + rep >= 0){
+            if (districtGrid[co[0] + rep][co[1] + rep] == 0){
+              districtGrid[co[0] + rep][co[1] + rep] = x;
+            }
+          }
+        }
+        rep++;
+      }
+      x++;
+      */
+    }
+    spiral++;
+  }
+  console.log(districtGrid);
+}
+
 function election(){
   electionGrid = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],0,0,0];
   var col;
@@ -357,6 +427,8 @@ function election(){
           else {
             side = 1;
           }
+          break;
+        default:
           break;
       }
       electionGrid[side][districtGrid[x][y]]++;
