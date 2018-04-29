@@ -19,6 +19,11 @@ function init(){
         case "3":
           election();
           break;
+        case "4":
+          repeatElection(10);
+          break;
+        case "5":
+          document.getElementById("el").innerHTML = "";
         default:
           break;
       }
@@ -415,6 +420,7 @@ function randomInt(min, max) {
 
 function repeatElection(iterations){
   for (var x = 0; x < iterations; x++){
-
+    filled = 1;
+    election();
   }
 }
