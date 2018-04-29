@@ -74,11 +74,10 @@
 <body onload="init()">
 <div style="text-align: center;">
   <button onclick="popGenerate(30, 1000)">Generate Population (1)</button>
-  <button onclick="redistrict(1)">Redistrict (2)</button>
-  <input type="number" id="districtType" min="1" max="5" value="1"></input>
-  <button onclick="resetBoard()">Reset districts (3)</button>
-  <button onclick="election()">Election (4):</button>
-  <p id="winStat">RepWin, DemWin | Rep, Dem, Undec, Indep</p>
+  <button onclick="redistrict(1)">Redistrict (2) Type:</button>
+  <input style="width: 30px;" type="number" id="districtType" min="1" max="5" value="1"></input>
+  <button onclick="election()">Election (3):</button>
+  <p id="winStat">Rep, Dem, Undec, Indep</p>
 </div>
 <div class="container">
   <div class="row">
@@ -2682,6 +2681,8 @@
     <div class="cell" id="box4949"></div>
   </div>
 </div>
+<div style="text-align: center; font-size: 20px;" id="el"></div>
+<div id="bottomScroll"></div>
 </body>
 </html>
 

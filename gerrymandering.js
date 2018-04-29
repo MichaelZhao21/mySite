@@ -4,6 +4,7 @@ var electionGrid;
 var count = [0,0,0,0];
 var winStat = [0,0];
 var filled = 0;
+var electionNum = 0;
 
 function init(){
   setupGrid();
@@ -16,10 +17,8 @@ function init(){
           redistrict();
           break;
         case "3":
-          resetBoard();
-          break;
-        case "4":
           election();
+          break;
         default:
           break;
       }
@@ -189,14 +188,8 @@ function analysis(){
   for (x = 0; x < count.length; x++){
     value = value + ", " + count[x];
   }
-  value = " | " + value.substring(2);
-  if (count[0] > count[1]){
-    winStat[0]++;
-  }
-  else{
-    winStat[1]++;
-  }
-  document.getElementById("winStat").innerHTML = winStat + value;
+  value = value.substring(2);
+  document.getElementById("winStat").innerHTML = value;
 }
 
 function drawDistricts(){
@@ -326,75 +319,18 @@ function district2(){
   }
 }
 
-//DEFUNCT
 function district3(){
-  var x = 0;
-  var y;
-  var z;
-  var dc;
-  var dx;
-  var dy;
-  var spiralSize;
-  var spiralStart;
-  var rep;
-  var spiral = 0;
-  var co = [-1,-1];
-  while (x < 25){
-    for (y = 0; y < 4; y++){
-      for (z = spiral; z < 50 - (spiral * 2); z++){
-        switch (y){
-          case 0:
-            if (districtGrid[spiral][z] == 0){
-              co = [spiral, z];
-            }
-            break;
-          case 1:
-            if (districtGrid[z][49 - spiral] == 0){
-              co = [z, 49 - spiral];
-            }
-            break;
-          case 2:
-            if (districtGrid[49 - spiral][z] == 0){
-              co = [49 - spiral, z];
-            }
-            break;
-          case 3:
-            if (districtGrid[z][spiral] == 0){
-              co = [z, spiral];
-            }
-            break;
-        }
-        if (co[0] != -1){
-          break;
-        }
-      }
-      if (districtGrid[co[0]][co[1]] == 0){
-        break;
-      }
+  for (var x = 0; x < 25; x++){
+    for (var y = 0; y < 100; y++){
+      districtGrid
     }
-    if (co[0] != -1){
-      /*
-      rep = 1;
-      while (dc < 100){
-        spiralSize = Math.pow((2 * rep) + 1);
-        spiralStart = rep;
-        for (var l = 0; l < spiralSize; l++){
-          if (co[0] + rep >= 0 && co[1] + rep >= 0){
-            if (districtGrid[co[0] + rep][co[1] + rep] == 0){
-              districtGrid[co[0] + rep][co[1] + rep] = x;
-            }
-          }
-        }
-        rep++;
-      }
-      x++;
-      */
-    }
-    spiral++;
   }
 }
 
 function election(){
+  if (filled == 0){
+    return;
+  }
   electionGrid = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],0,0,0];
   var col;
   var ran;
@@ -446,9 +382,39 @@ function election(){
   else {
     electionGrid[4] = 2;
   }
-  console.log(electionGrid);
+  showElection();
+  filled = 0;
+}
+
+function showElection(){
+  var distType = document.getElementById("districtType").value;
+  var distWin = "";
+  var winSide;
+  for (var x = 0; x < 25; x++){
+    if (x % 5 == 0){
+      if (distWin.length != 0){
+        distWin += "<br>";
+      }
+    }
+    distWin += String(x + 1) + ":[" + electionGrid[0][x] + "," + electionGrid[1][x] + "] ";
+  }
+  if (electionGrid[4] == 1){
+    winSide = "Republicans";
+  }
+  else {
+    winSide = "Democrats";
+  }
+  electionNum++;
+  document.getElementById("el").innerHTML += "<br><br>" + "<b>Election " + electionNum + "</b> - <i>District Type: " + distType + "</i><br>" + distWin + "<br>Rep: " + electionGrid[2] + " | Dem: " + electionGrid[3] + " | Winner: " + winSide
+  document.getElementById("bottomScroll").scrollIntoView();
 }
 
 function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;
+}
+
+function repeatElection(iterations){
+  for (var x = 0; x < iterations; x++){
+
+  }
 }
