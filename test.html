@@ -14,6 +14,15 @@
   <p id="timeTest">0</p>
   <div id="addToMe"></div>
   <button onclick="addToDiv()">Add rectangle!!!!!!</button>
+  <p id="source">I really love paragraphs, don't you?</p>
+  <button onclick="confirm(1)">Yes</button>
+  <button onclick="confirm(0)">No</button>
+  <button onclick="confirm(2)">Reset</button><br>
+  <button onclick="initPlayer()">Add Player</button><br>
+  <br>
+  <canvas id="myCanvas" width="200" height="100"style="border:1px solid #000000;"></canvas><br>
+  <p id=keyPressed>KEY!</p>
+  <br><br>
 
   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
   <script>
@@ -22,6 +31,7 @@
       x.innerHTML = "Michael";
       window.setTimeout(function(){x.innerHTML = "";},600);
     });
+
   function myFunction(){
     alert("hi");
   }
@@ -39,17 +49,109 @@
   function hello(){
     setInterval(incr(),1000);
   }
+
   function ran(){
     var testString = "$%$%$%$%$";
     testString = testString.replace(new RegExp('\\$', 'g'), " ");
     console.log(testString);
   }
+
   function incr(){
     var x = document.getElementById("timeTest").innerHTML;
 
     x = Number(x) + 1;
     console.log(x);
     document.getElementById("timeTest").innerHTML = x;
+  }
+
+  document.addEventListener("keydown", function onEvent(event) {
+    x = document.getElementById("keyPressed");
+      switch(event.key){
+        case "ArrowDown":
+          x.innerHTML = "Down";
+          movePlayer("down");
+          break;
+        case "ArrowUp":
+          x.innerHTML = "Up";
+          movePlayer("up");
+          break;
+        case "ArrowLeft":
+          x.innerHTML = "Left";
+          movePlayer("left");
+          break;
+        case "ArrowRight":
+          x.innerHTML = "Right";
+          movePlayer("right");
+          break;
+        default:
+          return;
+      }
+
+  });
+
+  function confirm(choice){
+  	switch(choice){
+  		case 0:
+  			document.getElementById("source").innerHTML = "EWWWWWWWWWWWWWWWWWw";
+  			break;
+  		case 1:
+  			document.getElementById("source").innerHTML = "YAAAAAAAAAAAAAASSSS";
+  			break;
+  		case 2:
+  			document.getElementById("source").innerHTML = "I really love paragraphs, don't you?";
+  			break;
+  	}
+  }
+  var player;
+  function line(){
+  	var c = document.getElementById("myCanvas");
+  	var ctx = c.getContext("2d");
+  	ctx.moveTo(0, 0);
+  	ctx.lineTo(200, 100);
+  	ctx.stroke();
+  }
+  function clearCanvas(){
+  	var c = document.getElementById("myCanvas");
+  	var ctx = c.getContext("2d");
+  	ctx.clearRect(0, 0, 200, 100);
+  }
+  function initPlayer(){
+  	var canvas = document.getElementById("myCanvas");
+  	var ctx = canvas.getContext("2d");
+  	ctx.fillStyle = "#FF0000";
+  	ctx.fillRect(100,50,10,10);
+  	player = [100,50];
+  }
+  function movePlayer(direction){
+  	var c = document.getElementById("myCanvas");
+  	var ctx = c.getContext("2d");
+  	switch (direction){
+  		case ("up"):
+  			player[1] = player[1] - 10;
+  			break;
+  		case ("down"):
+  			player[1] = player[1] + 10;
+  			break;
+  		case ("left"):
+  			player[0] = player[0] - 10;
+  			break;
+  		default:
+  			player[0] = player[0] + 10;
+  	}
+  	if (player[0] < 0){
+  		player[0] = 0;
+  	}
+  	else if (player[0] > 190){
+  		player[0] = 190;
+  	}
+  	else if (player[1] < 0){
+  		player[1] = 0;
+  	}
+  	else if (player[1] > 90){
+  		player[1] = 90;
+  	}
+  	ctx.clearRect(0,0,200,100);
+  	ctx.fillRect(player[0],player[1],10,10);
   }
   </script>
 </body>

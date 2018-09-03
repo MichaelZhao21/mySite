@@ -3,15 +3,6 @@
 <html>
 <body>
   <h1>A Test Site</h1>
-  <p id="source">I really love paragraphs, don't you?</p>
-  <button onclick="confirm(1)">Yes</button>
-  <button onclick="confirm(0)">No</button>
-  <button onclick="confirm(2)">Reset</button><br>
-  <button onclick="initPlayer()">Add Player</button><br>
-  <br>
-  <canvas id="myCanvas" width="200" height="100"style="border:1px solid #000000;"></canvas><br>
-  <p id=keyPressed>KEY!</p>
-  <br><br>
 
   <h2>Games</h2>
   <input type="button" value="Adding game" onclick="window.location.href = 'addingGame.html';" /><br>
@@ -31,43 +22,7 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-document.addEventListener("keydown", function onEvent(event) {
-  x = document.getElementById("keyPressed");
-    switch(event.key){
-      case "ArrowDown":
-        x.innerHTML = "Down";
-        movePlayer("down");
-        break;
-      case "ArrowUp":
-        x.innerHTML = "Up";
-        movePlayer("up");
-        break;
-      case "ArrowLeft":
-        x.innerHTML = "Left";
-        movePlayer("left");
-        break;
-      case "ArrowRight":
-        x.innerHTML = "Right";
-        movePlayer("right");
-        break;
-      default:
-        return;
-    }
 
-});
-function confirm(choice){
-	switch(choice){
-		case 0:
-			document.getElementById("source").innerHTML = "EWWWWWWWWWWWWWWWWWw";
-			break;
-		case 1:
-			document.getElementById("source").innerHTML = "YAAAAAAAAAAAAAASSSS";
-			break;
-		case 2:
-			document.getElementById("source").innerHTML = "I really love paragraphs, don't you?";
-			break;
-	}
-}
 </script>
 <script src="indexCanvasDraw.js"></script>
 </html>
