@@ -38,6 +38,14 @@
   bottom: 5px;
   left: -5px;
 }
+.rightSpecial {
+  width: 5px;
+  height: 40px;
+  background-color: white;
+  position: relative;
+  bottom: 10px;
+  left: -5px;
+}
 .Bup {
   width: 1755px;
   height: 5px;
@@ -75,7 +83,7 @@
 <div style="text-align: center;">
   <button onclick="popGenerate(30, 1000)">Generate Population (1)</button>
   <button onclick="redistrict(1)">Redistrict (2) Type:</button>
-  <input style="width: 30px;" type="number" id="districtType" min="1" max="5" value="1"></input>
+  <input style="width: 30px;" type="number" id="districtType" min="1" max="3" value="3"></input>
   <button onclick="election()">Election (3):</button>
   <p id="winStat">Rep, Dem, Undec, Indep</p>
 </div>
@@ -2682,6 +2690,11 @@
   </div>
 </div>
 <div style="text-align: center; font-size: 20px;" id="el"></div>
+<br>
+<input type="text" id="gridLoad"></input>
+<input type="text" id="distLoad"></input>
+<div id="gridSave"></div>
+<div id="distSave"></div>
 <div id="bottomScroll"></div>
 </body>
 </html>
