@@ -6,13 +6,13 @@
 
   <h2>Cool Stuff</h2>
   <div id="coolStuff">
-    <input type="button" value="Adding game" onclick="window.location.href = 'addingGame.html';" /><br>
-    <input type="button" value="Sudoku generator (WIP)" onclick="window.location.href = 'sudokuGen.html';"/><br>
-    <input type="button" value="Tic Tac Tow (TODO)" onclick="window.location.href = 'ttt.html'"/><br>
-    <input type="button" value="2048 Port (TODO)" onclick="window.location.href = '2048.html';"/><br>
-    <input type="button" value="Gerrymandering test" onclick="window.location.href = 'gerrymandering.html';"/><br>
-    <input type="button" value="Test" onclick="window.location.href = 'test.html'"/><br>
-    <input type="button" value="Maze generator" onclick="window.location.href = 'mazeGen.html'"/><br>
+    <a class="col" href="addingGame.html">Adding Game</a>
+    <a class="col" href="sudokuGen.html">Sudoku Generator (WIP)</a>
+    <a class="col" href="ttt.html">Tic Tac Tow (TODO)</a>
+    <a class="col" href="2048.html">2048 Port (TODO)</a>
+    <a class="col" href="gerrymandering.html">Gerrymandering Test</a>
+    <a class="col" href="test.html">Testing Page</a>
+    <a class="col" href="mazeGen.html">Maze Generator</a>
   </div>
 
   <h2>To Do:</h2>
@@ -26,9 +26,20 @@
 
 
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
+<style>
+.col {
 
-</script>
+    display: block;
+    color: #fff;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+#coolStuff {
+  overflow: hidden;
+  width: 12%;
+  background-color: #123;
+}
+</style>
 <script src="indexCanvasDraw.js"></script>
 </html>
