@@ -5,6 +5,7 @@ var boxH = 20;
 var innerH = boxH - (2 * wallW);
 var grid = [];
 var stack = [];
+var speed = 20;
 
 function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;
@@ -88,9 +89,11 @@ function run() {
   var int = setInterval(function(){
     if (stack.length == 0) {
       clearInterval(int);
+      var playButton = document.getElementById("play");
+      playButton.style.display = "block";
     }
     runTest();
-  }, 20);
+  }, speed);
 }
 
 function runTest() {
@@ -168,6 +171,8 @@ function finalizeGrid() {
 }
 
 function playGame() {
+  c.fillRect(0,10,10,10);
+  c.fillRect(800, 790, 10, 10);
   //allows you to control a player and detect if you win
 }
 
