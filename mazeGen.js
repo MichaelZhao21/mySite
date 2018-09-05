@@ -90,7 +90,7 @@ function run() {
       clearInterval(int);
     }
     runTest();
-  }, 0);
+  }, 20);
 }
 
 function runTest() {
