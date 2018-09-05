@@ -5,7 +5,6 @@ var boxH = 20;
 var innerH = boxH - (2 * wallW);
 var grid = [];
 var stack = [];
-var intCount = 0;
 
 function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;
@@ -86,14 +85,12 @@ function run() {
   paint.box(g.x, g.y, g.up, g.right, g.down, g.left, g.visited);
   g.visited = true;
   stack.push(g);
-  // while (stack.length > 0) {
   var int = setInterval(function(){
     if (stack.length == 0) {
       clearInterval(int);
     }
     runTest();
-    intCount++;
-  }, 5);
+  }, 0);
 }
 
 function runTest() {
@@ -164,4 +161,16 @@ function findNext(x, y) {
     }
   }
     return unvisited;
+}
+
+function finalizeGrid() {
+  //make sure walls are correct for every cell & output it somehow
+}
+
+function playGame() {
+  //allows you to control a player and detect if you win
+}
+
+function loadGrid() {
+  //input grid and then it displays
 }

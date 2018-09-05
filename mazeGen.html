@@ -2,9 +2,15 @@
 <html>
   <head>
     <script src="mazeGen.js"></script>
+    <style>
+      #play {
+        display: none;
+      }
+    </style>
   </head>
   <body>
     <div id="intro">Maze Generator <button onclick="setup()">Start</button></div>
     <canvas id="mainCanvas"></canvas>
+    <div id="play"><button onclick="playGame()">Play Game</button></div>
   </body>
 </html>
