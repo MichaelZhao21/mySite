@@ -23,6 +23,7 @@
   <canvas id="myCanvas" width="200" height="100"style="border:1px solid #000000;"></canvas><br>
   <p id=keyPressed>KEY!</p>
   <br><br>
+  <button onclick="arrayClearTest()">Array Clear</button><br>
 
   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
   <script>
@@ -46,6 +47,12 @@
     document.getElementById("addToMe").appendChild(addValue);
   }
 
+  function arrayClearTest() {
+    var bob = [1,2,3,4];
+    console.log(bob);
+    bob = [];
+    console.log(bob);
+  }
   function hello(){
     setInterval(incr(),1000);
   }
