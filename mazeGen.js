@@ -252,6 +252,7 @@ function finalizeGrid() {
     }
   }
   grid = newGrid;
+  grid[1][0] = true;
 }
 
 function playGame() {
@@ -259,6 +260,7 @@ function playGame() {
   var playB = document.getElementById("play");
   playB.style.display = "none";
   playing = true;
+  window.addEventListener('scroll', noScroll);
 }
 
 function resetGame() {
@@ -286,6 +288,9 @@ function loadGrid() {
     saveLoadInfo.innerHTML = "Invalid input!";
     return;
   }
+
+  c.fillStyle = "#000";
+  c.fillRect(0, 0, sideL, sideL);
 
   for (var y = 0; y < 80; y++) {
     gridRow = [];
@@ -338,6 +343,10 @@ function movePerson(dir) {
       }
       break;
     case "right":
+      if (player.y == 790 && player.x == 790) {
+        endGame();
+        return;
+      }
       if (grid[player.y / 10][(player.x / 10) + 1]) {
         player.x += 10;
       }
@@ -357,6 +366,28 @@ function movePerson(dir) {
   }
   paint.character(oldX, oldY, "erase");
   paint.character(player.x, player.y, "draw");
+}
+
+function teleport() {
+  var x = Number(document.getElementById("teleX").value);
+  var y = Number(document.getElementById("teleY").value);
+  if (grid[y / 10][x / 10]) {
+    paint.character(player.x, player.y, "erase");
+    paint.character(x, y, "draw");
+    player.x = x;
+    player.y = y;
+  }
+}
+
+function endGame() {
+  window.removeEventListener('scroll', noScroll());
+  paint.character(player.x, player.y, "erase");
+  paint.character(player.x + 10, player.y, "draw");
+  alert("YOU WIN!!!!!!!!!!!!!!!!");
+}
+
+function noScroll() {
+  window.scrollTo( 0, 0 );
 }
 
 document.addEventListener("keydown", function onEvent(event) {
