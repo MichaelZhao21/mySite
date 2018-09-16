@@ -6,7 +6,9 @@ var innerH = boxH - (2 * wallW);
 var grid = [];
 var stack = [];
 var speed = 1;
-var player = {x:0, y:10};
+var player = {x:10, y:10};
+var playing = false;
+var g;
 
 function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;
@@ -39,8 +41,24 @@ var paint;
   }
   paint.box = box;
 
-  function character(x, y) {
-    c.fillStyle = "#ff6600";
+  function finalBox(x, y, state) {
+    if (state) {
+      c.fillStyle = "#fff";
+    }
+    else {
+      c.fillStyle = "#000";
+    }
+    c.fillRect(x, y, 10, 10);
+  }
+  paint.finalBox = finalBox;
+
+  function character(x, y, op) {
+    if (op == "draw") {
+      c.fillStyle = "#ff6600";
+    }
+    else {
+      c.fillStyle = "#fff";
+    }
     c.fillRect(x + 1, y + 1, 8, 8);
   }
   paint.character = character;
@@ -88,7 +106,7 @@ function makeGrid() {
 function run() {
   var ax = randomInt(0, 40) * 20;
   var ay = randomInt(0, 40) * 20;
-  var g = getGrid(ax, ay);
+  g = getGrid(ax, ay);
   var next, choice, by, bx;
   var dx = 0;
   var dy = 0;
@@ -97,6 +115,7 @@ function run() {
   stack.push(g);
   var int = setInterval(function(){
     if (stack.length == 0) {
+      finalizeGrid();
       clearInterval(int);
       var playButton = document.getElementById("play");
       playButton.style.display = "block";
@@ -177,8 +196,12 @@ function findNext(x, y) {
 }
 
 function finalizeGrid() {
+  var newGrid = [];
+  var newGridRow = [];
+  var newGridRow2 = [];
   var g;
   var gridIncr = 0;
+
   for (var y = 0; y < sideL; y += boxH) {
     for (var x = 0; x < sideL; x += boxH) {
       g = getGrid(x, y);
@@ -202,13 +225,40 @@ function finalizeGrid() {
       gridIncr++;
     }
   }
+
+  for (var x = 0; x < 80; x++) {
+    newGridRow.push(false);
+  }
+  newGrid.push(newGridRow);
+
+  for (var y = 0; y < sideL; y += boxH) {
+    newGridRow = [false];
+    newGridRow2 = [false];
+    for (var x = 0; x < sideL; x += boxH) {
+      g = getGrid(x, y);
+      newGridRow.push(true);
+      newGridRow.push(!g.right);
+      newGridRow2.push(!g.down);
+      newGridRow2.push(false);
+    }
+    newGrid.push(newGridRow);
+    newGrid.push(newGridRow2);
+  }
+  c.fillStyle = "#000";
+  c.fillRect(0, 0, sideL, sideL);
+  for (var y = 0; y < 800; y += 10) {
+    for (var x = 0; x < 800; x += 10) {
+      paint.finalBox(x, y, newGrid[y / 10][x / 10]);
+    }
+  }
+  grid = newGrid;
 }
 
 function playGame() {
   resetGame();
   var playB = document.getElementById("play");
   playB.style.display = "none";
-  finalizeGrid();
+  playing = true;
 }
 
 function resetGame() {
@@ -217,76 +267,116 @@ function resetGame() {
   c.fillStyle = "#fff";
   c.fillRect(0,10,10,10);
   c.fillRect(800, 790, 10, 10);
-  for (var x = 0; x < 1600; x++) {
-    g = grid[x];
-    paint.box(g.x, g.y, g.up, g.right, g.down, g.left, false);
+  for (var y = 0; y < 800; y += 10) {
+    for (var x = 0; x < 800; x += 10) {
+      paint.finalBox(x, y, grid[y / 10][x / 10]);
+    }
   }
-  paint.character(player.x, player.y);
+  paint.character(player.x, player.y, "draw");
 }
 
 function loadGrid() {
   var saveLoadInfo = document.getElementById("saveLoadInfo");
   var input = document.getElementById("loadData").value;
-  var cutInput = [];
+  var incr = 0;
+  var inTest;
+  var gridRow = [];
 
   if (input.length != 6400) {
     saveLoadInfo.innerHTML = "Invalid input!";
     return;
   }
-  grid = [];
-  while (input.length > 0) {
-    cutInput.push(Number(input.substring(0, 1)) == 1);
-    cutInput.push(Number(input.substring(1, 2)) == 1);
-    cutInput.push(Number(input.substring(2, 3)) == 1);
-    cutInput.push(Number(input.substring(3, 4)) == 1);
-    input = input.substring(4);
+
+  for (var y = 0; y < 80; y++) {
+    gridRow = [];
+    for (var x = 0; x < 80; x++) {
+      inTest = input.substring(incr, incr + 1);
+      gridRow.push(inTest == "1");
+      incr++;
+    }
+    grid.push(gridRow);
   }
-  for (var y = 0; y < sideL; y += boxH) {
-    for (var x = 0; x < sideL; x += boxH) {
-      grid.push(new Cell(x, y, cutInput[0], cutInput[1], cutInput[2], cutInput[3], false));
-      for (var z = 0; z < 4; z++) {
-        cutInput.shift();
-      }
+
+  for (var y = 0; y < 800; y += 10) {
+    for (var x = 0; x < 800; x += 10) {
+      paint.finalBox(x, y, grid[y / 10][x / 10]);
     }
   }
-  resetGame();
+  playGame();
 }
 
 function saveGrid() {
   var saveLoadInfo = document.getElementById("saveLoadInfo");
   var outputBox = document.getElementById("loadData");
   var output = "";
-  var g;
+
   if (grid.length == 0) {
     saveLoadInfo.innerHTML = "Nothing to save!";
     return;
   }
-  for (var x = 0; x < 1600; x++) {
-    g = grid[x];
-    if (g.up) {
-      output += "1";
-    }
-    else {
-      output += "0";
-    }
-    if (g.right) {
-      output += "1";
-    }
-    else {
-      output += "0";
-    }
-    if (g.down) {
-      output += "1";
-    }
-    else {
-      output += "0";
-    }
-    if (g.left) {
-      output += "1";
-    }
-    else {
-      output += "0";
+  finalizeGrid();
+  for (var y = 0; y < 80; y++) {
+    for (var x = 0; x < 80; x++) {
+      if (grid[y][x]) {
+        output += 1;
+      }
+      else {
+        output += 0;
+      }
     }
   }
   outputBox.value = output;
 }
+
+function movePerson(dir) {
+  oldX = player.x;
+  oldY = player.y;
+  switch (dir) {
+    case "up":
+      if (grid[(player.y / 10) - 1][player.x / 10]) {
+        player.y -= 10;
+      }
+      break;
+    case "right":
+      if (grid[player.y / 10][(player.x / 10) + 1]) {
+        player.x += 10;
+      }
+      break;
+    case "down":
+      if (grid[(player.y / 10) + 1][player.x / 10]) {
+        player.y += 10;
+      }
+      break;
+    case "left":
+      if (grid[player.y / 10][(player.x / 10) - 1]) {
+        player.x -= 10;
+      }
+      break;
+    default:
+      return;
+  }
+  paint.character(oldX, oldY, "erase");
+  paint.character(player.x, player.y, "draw");
+}
+
+document.addEventListener("keydown", function onEvent(event) {
+  if (playing) {
+    console.log(event.key);
+    switch(event.key){
+      case "ArrowUp":
+        movePerson("up");
+        break;
+      case "ArrowRight":
+        movePerson("right");
+        break;
+      case "ArrowDown":
+        movePerson("down");
+        break;
+      case "ArrowLeft":
+        movePerson("left");
+        break;
+      default:
+        return;
+    }
+  }
+});

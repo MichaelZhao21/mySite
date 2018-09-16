@@ -24,6 +24,7 @@
   <p id=keyPressed>KEY!</p>
   <br><br>
   <button onclick="arrayClearTest()">Array Clear</button><br>
+  <button onclick="darr()">2d arr</button>
 
   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
   <script>
@@ -33,6 +34,18 @@
       window.setTimeout(function(){x.innerHTML = "";},600);
     });
 
+  function darr() {
+    var grid = [];
+    var gridRow = [];
+    for (var y = 0; y < 80; y++) {
+      gridRow = [];
+      for (var x = 0; x < 80; x++) {
+        gridRow.push(false);
+      }
+      grid.push(gridRow);
+    }
+    console.log(grid);
+  }
   function myFunction(){
     alert("hi");
   }
