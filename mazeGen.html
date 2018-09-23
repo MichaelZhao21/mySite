@@ -7,7 +7,7 @@
         display: none;
       }
       #loadData {
-        width: 500px;
+        width: 400px;
       }
       canvas {
         float: left;
@@ -17,15 +17,19 @@
   </head>
   <body onload="drawCanvas()">
     <canvas id="mainCanvas"></canvas>
-    <div id="intro">Maze Generator <button onclick="setup()">Start</button></div>
-    <div id="play"><button onclick="playGame()">Play Game</button></div>
-    <div id="saveLoad">
-      <p id="saveLoadInfo">Click the button to save or load a maze</p>
-      <button onclick="saveGrid()">Save Game</button>
-      <button onclick="loadGrid()">Load Game</button><br>
-      <input type="text" id="loadData"></input><br><br>
-      <button onclick="teleport()">Teleport!</button><br>
-      <input type="text" id="teleX"> = X</input><br>
-      <input type="text" id="teleY"> = Y</input>
+    <div id="funText">
+      <div id="intro">Maze Generator <button onclick="setup()">Start</button></div>
+      <div id="play"><button onclick="playGame()">Play Game</button></div>
+      <div id="saveLoad">
+        <p id="saveLoadInfo">Click the button to save or load a maze</p>
+        <button onclick="saveGrid()">Save Game</button>
+        <button onclick="loadGrid()">Load Game</button><br>
+        <input type="text" id="loadData"></input><br><br>
+        <button onclick="teleport()">Teleport!</button><br>
+        <input type="text" id="teleX"> = X</input><br>
+        <input type="text" id="teleY"> = Y</input>
+      </div>
+      <div id="print"><button onclick="printMe()">Print this maze</button><br>
+    </div>
   </body>
 </html>

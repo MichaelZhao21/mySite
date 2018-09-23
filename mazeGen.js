@@ -6,7 +6,7 @@ var innerH = boxH - (2 * wallW);
 var grid = [];
 var stack = [];
 var speed = 1;
-var player = {x:10, y:10};
+var player = {x:0, y:10};
 var playing = false;
 var g;
 
@@ -199,6 +199,7 @@ function finalizeGrid() {
   var newGrid = [];
   var newGridRow = [];
   var newGridRow2 = [];
+  var emptyRow = [];
   var g;
   var gridIncr = 0;
 
@@ -227,9 +228,9 @@ function finalizeGrid() {
   }
 
   for (var x = 0; x < 80; x++) {
-    newGridRow.push(false);
+    emptyRow.push(false);
   }
-  newGrid.push(newGridRow);
+  newGrid.push(emptyRow);
 
   for (var y = 0; y < sideL; y += boxH) {
     newGridRow = [false];
@@ -241,18 +242,22 @@ function finalizeGrid() {
       newGridRow2.push(!g.down);
       newGridRow2.push(false);
     }
+    newGridRow.push(false);
+    newGridRow2.push(false);
     newGrid.push(newGridRow);
     newGrid.push(newGridRow2);
   }
+  newGrid.push(emptyRow);
+  newGrid[1][0] = true;
+  newGrid[79][80] = true;
   c.fillStyle = "#000";
   c.fillRect(0, 0, sideL, sideL);
-  for (var y = 0; y < 800; y += 10) {
-    for (var x = 0; x < 800; x += 10) {
+  for (var y = 0; y < 810; y += 10) {
+    for (var x = 0; x < 810; x += 10) {
       paint.finalBox(x, y, newGrid[y / 10][x / 10]);
     }
   }
   grid = newGrid;
-  grid[1][0] = true;
 }
 
 function playGame() {
@@ -260,15 +265,12 @@ function playGame() {
   var playB = document.getElementById("play");
   playB.style.display = "none";
   playing = true;
-  window.addEventListener('scroll', noScroll);
 }
 
 function resetGame() {
   c.fillStyle = "#000";
   c.fillRect(0, 0, sideL, sideL);
   c.fillStyle = "#fff";
-  c.fillRect(0,10,10,10);
-  c.fillRect(800, 790, 10, 10);
   for (var y = 0; y < 800; y += 10) {
     for (var x = 0; x < 800; x += 10) {
       paint.finalBox(x, y, grid[y / 10][x / 10]);
@@ -284,7 +286,7 @@ function loadGrid() {
   var inTest;
   var gridRow = [];
 
-  if (input.length != 6400) {
+  if (input.length != 6561) {
     saveLoadInfo.innerHTML = "Invalid input!";
     return;
   }
@@ -307,6 +309,7 @@ function loadGrid() {
       paint.finalBox(x, y, grid[y / 10][x / 10]);
     }
   }
+  saveLoadInfo.innerHTML = "Successfully loaded!";
   playGame();
 }
 
@@ -319,9 +322,8 @@ function saveGrid() {
     saveLoadInfo.innerHTML = "Nothing to save!";
     return;
   }
-  finalizeGrid();
-  for (var y = 0; y < 80; y++) {
-    for (var x = 0; x < 80; x++) {
+  for (var y = 0; y < 81; y++) {
+    for (var x = 0; x < 81; x++) {
       if (grid[y][x]) {
         output += 1;
       }
@@ -331,6 +333,7 @@ function saveGrid() {
     }
   }
   outputBox.value = output;
+  saveLoadInfo.innerHTML = "Save successful!";
 }
 
 function movePerson(dir) {
@@ -380,14 +383,18 @@ function teleport() {
 }
 
 function endGame() {
-  window.removeEventListener('scroll', noScroll());
   paint.character(player.x, player.y, "erase");
   paint.character(player.x + 10, player.y, "draw");
   alert("YOU WIN!!!!!!!!!!!!!!!!");
 }
 
-function noScroll() {
-  window.scrollTo( 0, 0 );
+function printMe() {
+  document.getElementById("funText").style.display = "none";
+  window.print();
+  var printInt = setInterval(function () {
+    document.getElementById("funText").style.display = "block";
+    clearInterval(printInt);
+  }, 10);
 }
 
 document.addEventListener("keydown", function onEvent(event) {
