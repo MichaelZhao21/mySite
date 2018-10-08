@@ -84,6 +84,30 @@
     document.getElementById("timeTest").innerHTML = x;
   }
 
+  function thankYou(name, date, doYouLikeJavaScript) {
+    var thankYouMessage = "Thank you Nikhil! You've been such a\
+    great programmer, and robotics was really fun with you! You were\
+    just a really cool person to talk to, and I'll continue on your\
+    legacy as a programmer!"
+    if (name == "Nikhil") {
+      if (date > 1538542800000 && date < 1538629200000) {
+        console.log(thankYouMessage);
+      }
+      else {
+        console.log("But it's not my birthday...");
+      }
+    }
+    else {
+      console.log("Eww only Nikhil would do something like this");
+    }
+    if (doYouLikeJavaScript) {
+      console.log("Wow!");
+    }
+    else {
+      console.log("eww");
+    }
+  }
+
   document.addEventListener("keydown", function onEvent(event) {
     x = document.getElementById("keyPressed");
       switch(event.key){
