@@ -9,6 +9,14 @@ var speed = 1;
 var player = {x:0, y:10};
 var playing = false;
 var g;
+var shiftHeld = false;
+var remPath;
+
+/*
+TODO:
+- Fix the save/load when refresh page
+- Add solution shower/use algo to get it
+*/
 
 function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;
@@ -56,6 +64,9 @@ var paint;
     if (op == "draw") {
       c.fillStyle = "#ff6600";
     }
+    else if (remPath.checked){
+      c.fillStyle = "#ffa366";
+    }
     else {
       c.fillStyle = "#fff";
     }
@@ -89,10 +100,9 @@ function drawCanvas() {
 }
 
 function setup() {
-  var intro = document.getElementById("intro");
-  intro.style.display = "none";
+  drawCanvas();
+  remPath = document.getElementById("remPath");
   makeGrid();
-  run();
 }
 
 function makeGrid() {
@@ -104,6 +114,8 @@ function makeGrid() {
 }
 
 function run() {
+  var intro = document.getElementById("intro");
+  intro.style.display = "none";
   var ax = randomInt(0, 40) * 20;
   var ay = randomInt(0, 40) * 20;
   g = getGrid(ax, ay);
@@ -339,36 +351,83 @@ function saveGrid() {
 function movePerson(dir) {
   oldX = player.x;
   oldY = player.y;
-  switch (dir) {
-    case "up":
-      if (grid[(player.y / 10) - 1][player.x / 10]) {
-        player.y -= 10;
-      }
-      break;
-    case "right":
-      if (player.y == 790 && player.x == 790) {
-        endGame();
+  if (shiftHeld) {
+    shiftedMove(dir);
+  }
+  else {
+    switch (dir) {
+      case "up":
+        if (grid[(player.y / 10) - 1][player.x / 10]) {
+            player.y -= 10;
+          }
+        break;
+      case "right":
+        if (player.y == 790 && player.x == 790) {
+          endGame();
+          return;
+        }
+        if (grid[player.y / 10][(player.x / 10) + 1]) {
+          player.x += 10;
+        }
+        break;
+      case "down":
+        if (grid[(player.y / 10) + 1][player.x / 10]) {
+          player.y += 10;
+        }
+        break;
+      case "left":
+        if (grid[player.y / 10][(player.x / 10) - 1]) {
+          player.x -= 10;
+        }
+        break;
+      default:
         return;
-      }
-      if (grid[player.y / 10][(player.x / 10) + 1]) {
-        player.x += 10;
-      }
-      break;
-    case "down":
-      if (grid[(player.y / 10) + 1][player.x / 10]) {
-        player.y += 10;
-      }
-      break;
-    case "left":
-      if (grid[player.y / 10][(player.x / 10) - 1]) {
-        player.x -= 10;
-      }
-      break;
-    default:
-      return;
+    }
   }
   paint.character(oldX, oldY, "erase");
   paint.character(player.x, player.y, "draw");
+}
+
+function shiftedMove(dir) {
+  switch (dir) {
+    case "up":
+      while (grid[(player.y / 10) - 1][player.x / 10]) {
+        player.y -= 10;
+        drawIf(0, 10);
+      }
+      break;
+    case "right":
+      while (grid[player.y / 10][(player.x / 10) + 1]) {
+        player.x += 10;
+        drawIf(-10, 0);
+        if (player.y == 790 && player.x == 790) {
+          endGame();
+          return;
+        }
+      }
+      break;
+    case "down":
+      while (grid[(player.y / 10) + 1][player.x / 10]) {
+        player.y += 10;
+        drawIf(0, -10);
+      }
+      break;
+    case "left":
+      while (grid[player.y / 10][(player.x / 10) - 1]) {
+        player.x -= 10;
+        drawIf(10, 0);
+      }
+      break;
+  }
+}
+
+function drawIf(dx, dy) {
+  if (remPath) {
+    oldX = player.x + dx;
+    oldY = player.y + dy;
+    paint.character(oldX, oldY, "erase");
+    paint.character(player.x, player.y, "draw");
+  }
 }
 
 function teleport() {
@@ -413,8 +472,16 @@ document.addEventListener("keydown", function onEvent(event) {
       case "ArrowLeft":
         movePerson("left");
         break;
+      case "Shift":
+        shiftHeld = true;
       default:
         return;
     }
+  }
+});
+
+document.addEventListener("keyup", function onEvent(event) {
+  if (playing && event.key == "Shift") {
+    shiftHeld = false;
   }
 });
