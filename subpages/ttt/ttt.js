@@ -2,6 +2,7 @@ var turn = 1;
 var bannedSpots = [];
 var grid = [[0,0,0],[0,0,0],[0,0,0]];
 var gameStart = true;
+var pvp = false;
 
 function selectedSpace(id) {
   var space = [Number(id.substring(3,5))];
@@ -90,6 +91,10 @@ function reset() {
   turn = 1;
   bannedSpots = [];
   grid = [[0,0,0],[0,0,0],[0,0,0]];
+}
+
+function cpuTurn() {
+
 }
 
 document.addEventListener("click", function onEvent(event) {
