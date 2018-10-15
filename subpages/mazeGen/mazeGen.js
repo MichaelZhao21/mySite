@@ -12,12 +12,6 @@ var g;
 var shiftHeld = false;
 var remPath;
 
-/*
-TODO:
-- Fix the save/load when refresh page
-- Add solution shower/use algo to get it
-*/
-
 function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min) ) + min;
 }
