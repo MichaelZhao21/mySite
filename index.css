@@ -1,0 +1,15 @@
+.col {
+  display: block;
+  color: #fff;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+#coolStuff {
+  overflow: hidden;
+  width: 12%;
+  background-color: #123;
+}
+.todoList {
+  font-size: 20px;
+}
