@@ -1,3 +1,30 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+.background {
+  display: block;
+  background-image: url("assets/indexBackground.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  z-index: 1;
+}
+.title {
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 60px;
+  font-family: "Ubuntu";
+  z-index: 2;
+}
+.bottomContent {
+  display: block;
+}
 .col {
   display: block;
   color: #fff;
@@ -5,9 +32,17 @@
   padding: 14px 16px;
   text-decoration: none;
 }
+a {
+  background-color: inherit;
+  font-size: 20px;
+  transition: font-size .5s, background-color .5s;
+}
+a:hover {
+  background-color: #2d5986;
+  font-size: 30px;
+}
 #coolStuff {
   overflow: hidden;
-  width: 12%;
   background-color: #123;
 }
 .todoList {
