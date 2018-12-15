@@ -33,12 +33,35 @@
   <button onclick="arrayClearTest()">Array Clear</button><br>
   <button onclick="darr()">2d arr</button>
 
+  <button onclick="fibb()">Fibbonaci is my friend</button>
+
 
   <!--SCRIPTS UNDER HERE-->
 
 
   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
   <script>
+
+  function fibb() {
+    var n = prompt("How many do you want?");
+    var a = 1;
+    var b = 1;
+    var c;
+    var sumArray = [1,2];
+    var output = [1,1];
+    var freq;
+    for (var x = 0; x < n; x++) {
+      c = b + a;
+      a = b;
+      b = c;
+      freq++;
+      sumArray.push(sumArray[sumArray.length - 1] + c);
+      output.push(c);
+    }
+    console.log(output);
+    console.log(sumArray);
+  }
+
   $(document).keydown (function () {
       x = document.getElementById("name");
       x.innerHTML = "Michael";
