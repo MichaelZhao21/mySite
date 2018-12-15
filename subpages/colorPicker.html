@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Color Picker!</title>
+  </head>
+  <body>
+    <div id="textColor" style="font-size: 70px">#ff0000</div>
+    <canvas id="showColor" width="300" height="300" style="background-color: #ff0000"></canvas><br>
+    <input id="pickColor" type="color" name="colorPicker" value="#ff0000" onchange="changeColor()"></input>
+    <script type="text/javascript">
+      function changeColor() {
+        var color = document.getElementById("pickColor").value;
+        document.getElementById("textColor").innerHTML = color;
+        document.getElementById("showColor").style.backgroundColor = color;
+        console.log(color);
+      }
+    </script>
+  </body>
+</html>
