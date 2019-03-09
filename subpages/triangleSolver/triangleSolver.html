@@ -5,16 +5,16 @@
     <title>Triangle Solver!</title>
     <link rel="stylesheet" href="triangleSolver.css">
   </head>
-  <body>
-    <img src="Triangle.png" alt="" width="200" height="200"/>
+  <body onload="setup()">
+    <img src="Triangle.png" alt="" width="300" height="300"/>
     <div class="input">
-      <input type="number" name="a" placeholder="a"/>
-      <input type="number" name="aA" placeholder="<A"/><br>
-      <input type="number" name="b" placeholder="b"/>
-      <input type="number" name="aB" placeholder="<B"/><br>
-      <input type="number" name="c" placeholder="c"/>
-      <input type="number" name="aC" placeholder="<C"/><br>
-      <button type="button" name="calculate">Calculate!</button>
+      <input type="number" id="a" placeholder="a"/>
+      <input type="number" id="angleA" placeholder="<A"/><br>
+      <input type="number" id="b" placeholder="b"/>
+      <input type="number" id="angleB" placeholder="<B"/><br>
+      <input type="number" id="c" placeholder="c"/>
+      <input type="number" id="angleC" placeholder="<C"/><br>
+      <button type="button" id="calculate">Calculate!</button>
     </div>
   </body>
   <script src="triangleSolver.js" charset="utf-8"></script>
