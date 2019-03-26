@@ -29,10 +29,10 @@ function setup() {
 
 function solveTriangle() {
   getTriangle();
+  checkForRealTriangle();
   var orderedTriangleArray = getOrderedArrayFromTriangle();
-  console.log(orderedTriangleArray);
   var triangleType = getTriangleType(orderedTriangleArray);
-  console.log(triangleType);
+  getRestOfAngles();
 }
 
 function getTriangle() {
@@ -70,8 +70,6 @@ function getTriangleType(triangleArray) {
       return caseList[i];
     }
   }
-  console.log(triangleArray);
-  console.warn("UH OH");
 }
 
 function isTriangleType(triangleArray, currCase) {
