@@ -15,79 +15,21 @@ body, html {
   z-index: 1;
 }
 .title {
-  color: white;
   position: absolute;
-  top: calc(50% + 50px);
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  text-align: center;
-  font-family: "Ubuntu", Helvetica, sans-serif;
+  width: auto;
+  height: auto;
+  margin: 0px;
   z-index: 2;
-  width: 455px;
-  height: 285px;
-  padding: 30px;
-  transition: background-color 1s, top .75s;
-}
-.title h1 {
-  font-size: 60px;
-}
-.title p {
-  font-size: 30px;
-  color: rgba(255, 255, 255, 0);
-  transition: color 1s;
-}
-.title a {
-  color: rgba(111, 234, 221, 0);
-  text-decoration: none;
-  transition: color 1s;
-}
-
-/* hover over title */
-
-.title:hover {
-  background-color: rgba(0,0,0,.5);
-  top: 50%;
-}
-.title:hover p {
-  color: rgba(255, 255, 255, 1);
-}
-.title:hover a {
-  color: rgba(111, 234, 221, 1);
-}
-
-/* the links */
-.col {
-
-  display: block;
-  color: #fff;
   text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+  color: white;
+  font-family: "Ubuntu", Helvetica, sans-serif;
+  font-size: 80px;
+  font-weight: bold;
+  transition: font-size 1s;
 }
-#coolStuff a {
-  background-color: inherit;
-  font-size: 20px;
-  transition: font-size .5s, background-color .5s;
-}
-#coolStuff a:hover {
-  background-color: #2d5986;
-  font-size: 30px;
-}
-#coolStuff {
-  overflow: hidden;
-  background-color: #123;
-}
-
-/* the todo list */
-
-.todoList {
-  font-size: 20px;
-}
-
-#name {
-  color: green;
-  font-size: 20px;
-  position: fixed;
-  bottom: 0;
-  left: 0;
+.title:hover {
+  font-size: 120px;
 }
