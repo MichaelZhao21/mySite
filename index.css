@@ -7,12 +7,14 @@ body, html {
 
 .background {
   display: block;
-  background-image: url("assets/indexBackground.jpg");
+  height: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100%;
   z-index: 1;
+  transition: background-image 2s;
+}
+.background div {
 }
 .title {
   position: absolute;
@@ -33,3 +35,6 @@ body, html {
 .title:hover {
   font-size: 120px;
 }
+::-webkit-scrollbar {
+    height: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
