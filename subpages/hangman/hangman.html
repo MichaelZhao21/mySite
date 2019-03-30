@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Hangman</title>
+    <link rel="stylesheet" href="hangman.css">
+  </head>
+  <body onload="setup()">
+    <div class="guess">
+      <pre class="hangmanDrawing"></pre>
+      <pre class="guessLetters"></pre>
+    </div>
+    <div class="menu">
+      <p>Type a Word For the Other Person To Guess:</p>
+      <input type="text" name="inputAnswer" value=""/>
+      <p>Or generate a random word: </p>
+    </div>
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js" charset="utf-8"></script>
+  <script src="hangman.js" charset="utf-8"></script>
+</html>

@@ -1,0 +1,13 @@
+.guess {
+  font-size: 30px;
+}
+.hangmanDrawing {
+  position: absolute;
+  left: 10;
+  top: 0;
+}
+.guessLetters {
+  position: absolute;
+  left: 10;
+  top: 100;
+}
