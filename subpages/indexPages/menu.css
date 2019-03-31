@@ -1,0 +1,20 @@
+.menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0,0,0,0.2);
+}
+.menu-item {
+  float: left;
+  padding: 8px;
+  margin: 4px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 20px;
+  color: white;
+  transition: background-color 0.25s;
+}
+.menu-item:hover {
+  background-color: rgba(0,0,0,0.2);
+}
