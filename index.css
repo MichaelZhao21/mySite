@@ -1,10 +1,10 @@
+/* Makes sure the website is fullscreen */
 body, html {
     height: 100%;
     margin: 0;
 }
 
 /* title with background picture */
-
 .background {
   display: block;
   height: 100%;
@@ -13,8 +13,6 @@ body, html {
   background-size: cover;
   z-index: 1;
   transition: background-image 2s;
-}
-.background div {
 }
 .title {
   position: absolute;
@@ -35,6 +33,3 @@ body, html {
 .title:hover {
   font-size: 120px;
 }
-::-webkit-scrollbar {
-    height: 0px;  /* remove scrollbar space */
-    background: transparent;  /* optional: just make scrollbar invisible */
