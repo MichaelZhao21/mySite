@@ -38,30 +38,49 @@ var drawPhases = [
 
 var hangmanPhase;
 var ansArray = [];
+var correctAnswer = [];
+const USER_ANS = 0;
+const RAND_ANS = 1;
 
 function setup() {
   $(".hangmanDrawing").html(arrToHTML(drawPhases[0]));
   hangmanPhase = 0;
   $(".guess").css("display", "none");
   $(":input[name='submitAnswer']").click(function (event) {
-    startGame();
+    startGame(USER_ANS);
   });
-  $(":input[name='randomAnswer']")
+  $(":input[name='randomAnswer']").click(function (event) {
+    startGame(RAND_ANS);
+  });
 }
 
-function startGame() {
-  var correctAnswerString = $(":input[name='inputAnswer']").val();
+function startGame(choice) {
+  if (choice == USER_ANS) {
+    correctAnswer = $(":input[name='inputAnswer']").val();
+  }
+  else {
+    correctAnswer = pickRandomAnswerFromFile();
+  }
+
   for (var x = 0; x < correctAnswerString.length; x++) {
     ansArray.push(correctAnswerString.substring(x, x + 1));
   }
   $(document).keydown(function (event) {
     if (event.originalEvent.key.match(/^[a-z]$/)) {
-      console.log(event.originalEvent.key.toUpperCase());
+      makeGuess(event.originalEvent.key.toUpperCase());
     }
   });
   $(".guess").css("display", "block");
   $(".menu").css("display", "none");
   $(".guessLetters").html(lettersToSpaces());
+}
+
+function pickRandomAnswerFromFile() {
+  
+}
+
+function makeGuess(key) {
+
 }
 
 function lettersToSpaces() {
