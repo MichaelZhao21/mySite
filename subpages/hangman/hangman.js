@@ -50,16 +50,27 @@ function setup() {
 }
 
 function startGame() {
-    var correctAnswerString = $(":input[name='inputAnswer']").val();
-    for (var x = 0; x < correctAnswerString.length; x++) {
-      ansArray.push(correctAnswerString.substring(x, x + 1));
+  var correctAnswerString = $(":input[name='inputAnswer']").val();
+  for (var x = 0; x < correctAnswerString.length; x++) {
+    ansArray.push(correctAnswerString.substring(x, x + 1));
+  }
+  $(document).keydown(function (event) {
+    if (event.originalEvent.key.match(/^[a-z]$/)) {
+      console.log(event.originalEvent.key.toUpperCase());
     }
-    console.log(ansArray);
+  });
+  $(".guess").css("display", "block");
+  $(".menu").css("display", "none");
+  $(".guessLetters").html(lettersToSpaces());
 }
 
-// $(document).keydown(function (event) {
-//   incrementAndDrawHangman();
-// });
+function lettersToSpaces() {
+  var output = ""
+  for (var x = 0; x < ansArray.length; x++) {
+    output += "_ ";
+  }
+  return output;
+}
 
 function incrementAndDrawHangman() {
   hangmanPhase++;
