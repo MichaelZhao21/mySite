@@ -1,13 +1,12 @@
 .guess {
   font-size: 30px;
+  position: relative;
+  left: 20px;
 }
 .hangmanDrawing {
   position: absolute;
-  left: 10;
-  top: 0;
 }
 .guessLetters {
   position: absolute;
-  left: 10;
-  top: 100;
+  top: 200px;
 }
