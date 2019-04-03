@@ -92,7 +92,7 @@ var randWords = ["exile",
 "base",
 "dome",
 "integrated",
-"mail carrier",
+"mailcarrier",
 "landowner",
 "panel",
 "flush",
@@ -328,7 +328,7 @@ var randWords = ["exile",
 "approval",
 "admire",
 "legislature",
-"index finger",
+"indexfinger",
 "jet",
 "trance",
 "elephant",
@@ -375,7 +375,7 @@ var randWords = ["exile",
 "gradual",
 "suit",
 "anger",
-"gas pedal",
+"gaspedal",
 "manual",
 "exemption",
 "linen",
@@ -424,7 +424,7 @@ var randWords = ["exile",
 "resort",
 "traction",
 "effective",
-"computer virus",
+"computervirus",
 "overeat",
 "respectable",
 "material",
@@ -512,7 +512,7 @@ var randWords = ["exile",
 "breed",
 "scrape",
 "economic",
-"right wing",
+"rightwing",
 "bomber",
 "face",
 "noncommittal",
@@ -918,6 +918,12 @@ function setup() {
   $(".hangmanDrawing").html(arrToHTML(drawPhases[0]));
   hangmanPhase = 0;
   $(".guess").css("display", "none");
+  $(":input[name='inputAnswer']").on("input", function (event) {
+    if (event.originalEvent.data.match(/^[a-z]$/) == null) {
+      var currVal = $(":input[name='inputAnswer']").val();
+      $(":input[name='inputAnswer']").val(currVal.substring(0, currVal.length - 1));
+    }
+  });
   $(":input[name='submitAnswer']").click(function (event) {
     startGame(USER_ANS);
   });
@@ -933,7 +939,6 @@ function startGame(choice) {
   else {
     correctAnswer = pickRandomAnswerFromFile().toUpperCase();
   }
-  console.log(correctAnswer);
 
   for (var x = 0; x < correctAnswer.length; x++) {
     ansArray.push(correctAnswer.substring(x, x + 1));
