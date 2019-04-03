@@ -908,7 +908,9 @@ var randWords = ["exile",
 
 var hangmanPhase;
 var ansArray = [];
-var correctAnswer = [];
+var correctAnswer;
+var displayArr = [];
+var guessedLetters = [];
 const USER_ANS = 0;
 const RAND_ANS = 1;
 
@@ -935,6 +937,7 @@ function startGame(choice) {
 
   for (var x = 0; x < correctAnswer.length; x++) {
     ansArray.push(correctAnswer.substring(x, x + 1));
+    displayArr.push("_");
   }
   $(document).keydown(function (event) {
     if (event.originalEvent.key.match(/^[a-z]$/)) {
@@ -961,13 +964,30 @@ function randInt(min, max) {
 }
 
 function makeGuess(key) {
+  var correct = false;
+  for (var i = 0; i < ansArray.length; i++) {
+    if (ansArray[i] == key) {
+      displayArr[i] = key;
+      correct = true;
+    }
+  }
+  if (!correct) {
+    incrementAndDrawHangman();
+  }
+  guessedLettersDisplay(key);
+  $(".guessLetters").html(lettersToSpaces());
+}
 
+function guessedLettersDisplay(newLetter) {
+  var defaultInfo = $(".info").html();
+  guessedLetters.push(newLetter);
+  $(".info").html(defaultInfo + newLetter + " ");
 }
 
 function lettersToSpaces() {
   var output = ""
   for (var x = 0; x < ansArray.length; x++) {
-    output += "_ ";
+    output += displayArr[x] + " ";
   }
   return output;
 }
