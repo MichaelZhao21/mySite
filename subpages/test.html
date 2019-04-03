@@ -34,6 +34,7 @@
   <button onclick="darr()">2d arr</button>
 
   <button onclick="fibb()">Fibbonaci is my friend</button>
+    <button onclick="cutString()">cutString</button>
 
 
   <!--SCRIPTS UNDER HERE-->
@@ -41,6 +42,12 @@
 
   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
   <script>
+
+  function cutString() {
+    var myString = "Hello World";
+    console.log(myString);
+    console.log(myString.substring(0, 4));
+  }
 
   function fibb() {
     var n = prompt("How many do you want?");
