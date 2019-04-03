@@ -976,12 +976,30 @@ function makeGuess(key) {
   }
   guessedLettersDisplay(key);
   $(".guessLetters").html(lettersToSpaces());
+  testForWin();
 }
 
 function guessedLettersDisplay(newLetter) {
   var defaultInfo = $(".info").html();
   guessedLetters.push(newLetter);
   $(".info").html(defaultInfo + newLetter + " ");
+}
+
+function testForWin() {
+  var allCorrect = true;
+  for (var x = 0; x < ansArray.length; x++) {
+    if (ansArray[x] != displayArr[x]) {
+      allCorrect = false;
+    }
+  }
+  if (allCorrect) {
+    $(document).off("keydown");
+    $(".info").html("YOU WIN!!!");
+  }
+  if (hangmanPhase == 6) {
+    $(document).off("keydown");
+    $(".info").html("You lose! The correct answer was: \n" + correctAnswer);
+  }
 }
 
 function lettersToSpaces() {
